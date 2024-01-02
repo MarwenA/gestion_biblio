@@ -1,0 +1,30 @@
+<!-- liste_auteurs.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Liste des Auteurs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <a href="{% url 'gestion_auteurs' %}" class="btn btn-primary btn-sm float-right">Retour à la Gestion des Auteurs</a>
+    <h2>Liste des Auteurs</h2>
+    <ul class="list-group">
+        {% for auteur in liste_auteurs %}
+            <li class="list-group-item">
+                {{ auteur.nom_auteur }} {{ auteur.prenom_auteur }}
+                <a href="{% url 'modifier_auteur' auteur.code_auteur %}" class="btn btn-warning btn-sm float-right mr-2">Modifier</a>
+                <a href="{% url 'supprimer_auteur' auteur.code_auteur %}" class="btn btn-danger btn-sm float-right">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

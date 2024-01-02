@@ -1,0 +1,45 @@
+<!-- emprunter_livre.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Emprunter un Livre</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Emprunter un Livre</h2>
+    <a href="{% url 'gestion_emprunts' %}" class="btn btn-primary btn-sm float-right">Retour à la Gestion des Emprunts</a>
+    <form method="post" action="{% url 'emprunter_livre' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="livreCode">Choisir un Livre:</label>
+            <select class="form-control" id="livreCode" name="livre_code" required>
+                {% for livre in livres_disponibles %}
+                    <option value="{{ livre.code_livre }}">
+                        {{ livre.titre_livre }} ({{ livre.exemplaires_disponibles }} exemplaires disponibles)
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="adherentCode">Choisir un Adhérent:</label>
+            <select class="form-control" id="adherentCode" name="adherent_code" required>
+                {% for adherent in adherents %}
+                    <option value="{{ adherent.code_adh }}">
+                        {{ adherent.nom_adh }} ({{ adherent.nbr_emprunts_adh }} emprunts en cours)
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Emprunter</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

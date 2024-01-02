@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Liste des Adhérents</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <a href="{% url 'gestion_adherents' %}" class="btn btn-primary btn-sm float-right">Retour à la Gestion des Adhérents</a>
+    <h2>Liste des Adhérents</h2>
+    <ul class="list-group">
+        {% for adherent in liste_adherents %}
+            <li class="list-group-item">
+                {{ adherent.nom_adh }} - {{ adherent.nbr_emprunts_adh }} emprunts
+                <a href="{% url 'modifier_adherent' adherent.code_adh %}" class="btn btn-warning btn-sm float-right mr-2">Modifier</a>
+                <a href="{% url 'supprimer_adherent' adherent.code_adh %}" class="btn btn-danger btn-sm float-right">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- liste_livres_empruntes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Liste des Livres Empruntés</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Liste des Livres Empruntés</h2>
+    <a href="{% url 'gestion_emprunts' %}" class="btn btn-primary btn-sm float-right">Retour à la Gestion des Emprunts</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Adhérent</th>
+                <th>Livre</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour prévue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprunt in livres_empruntes %}
+                <tr>
+                    <td>{{ emprunt.adherent.nom_adh }}</td>
+                    <td>{{ emprunt.livre.titre_livre }}</td>
+                    <td>{{ emprunt.date_emprunt }}</td>
+                    <td>{{ emprunt.date_retour_prevue }}</td>
+                    <td><a href="{% url 'rendre_livre' emprunt.id %}" class="btn btn-danger btn-sm float-right">Rendre Livre</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!-- modifier_livre.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Modifier un Livre</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <a href="{% url 'liste_livres' %}" class="btn btn-primary btn-sm float-right">Retour</a>
+
+    <h2>Modifier {{ livre.titre_livre }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="titreLivre">Titre du Livre:</label>
+            <input type="text" class="form-control" id="titreLivre" name="titre_livre" value="{{ livre.titre_livre }}" required>
+        </div>
+        <div class="form-group">
+            <label for="nbrePages">Nombre de pages:</label>
+            <input type="number" class="form-control" id="nbrePages" name="nbre_pages" value="{{ livre.nbre_pages }}" required>
+        </div>
+        <div class="form-group">
+            <label for="exemplairesDisponibles">Exemplaires disponibles:</label>
+            <input type="number" class="form-control" id="exemplairesDisponibles" name="exemplaires_disponibles" value="{{ livre.exemplaires_disponibles }}" required>
+        </div>
+        <div class="form-group">
+            <label for="codeAuteur">Auteur:</label>
+            <select class="form-control" id="codeAuteur" name="code_auteur" required>
+                {% for auteur in auteurs %}
+                    <option value="{{ auteur.code_auteur }}">{{ auteur.nom_auteur }} {{ auteur.prenom_auteur }}</option>
+                {% endfor %}
+            </select>
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
